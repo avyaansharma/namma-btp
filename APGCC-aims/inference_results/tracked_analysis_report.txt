@@ -1,0 +1,42 @@
+==================================================
+   CROWD COUNTING & TRAFFIC MONITORING REPORT
+==================================================
+
+Video File           : stock-footage-mumbai-maharashtra-india-mumbai-stampede-mumbai-ganesha-festival.webm
+Total Frames         : 466
+Duration             : 18.6 seconds
+
+--------------------------------------------------
+ KEY STATISTICS
+--------------------------------------------------
+  Average Crowd Count: 325.56
+  Maximum Crowd Count: 458
+  Minimum Crowd Count: 161
+  Peak at frame 214 (~8.6s)
+
+--------------------------------------------------
+ CROWD DENSITY CATEGORY BREAKDOWN
+--------------------------------------------------
+  Category               Frames   Duration   % Time
+  -------------------- -------- ---------- --------
+  Empty                       0       0.0s     0.0%
+  Low Traffic                 0       0.0s     0.0%
+  Moderate                    0       0.0s     0.0%
+  High Density                0       0.0s     0.0%
+  Overcrowded                 0       0.0s     0.0%
+  Stampede Risk             466      18.6s   100.0%
+
+--------------------------------------------------
+ [!] ALERT EVENTS (Overcrowded / Stampede Risk)
+--------------------------------------------------
+  Alert #1: Stampede Risk from 0.0s to 18.6s (duration: 18.6s)
+
+--------------------------------------------------
+ CATEGORY THRESHOLDS
+--------------------------------------------------
+  Empty                >= 0 people
+  Low Traffic          >= 1 people
+  Moderate             >= 6 people
+  High Density         >= 16 people
+  Overcrowded          >= 26 people
+  Stampede Risk        >= 40 people

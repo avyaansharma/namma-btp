@@ -1,0 +1,67 @@
+================================================================================
+APGCC: Improving Point-based Crowd Counting & Localization - How to Run
+================================================================================
+
+1. PREREQUISITES
+----------------------------------
+- Anaconda or Miniconda installed.
+- Python 3.8+ and CUDA-capable GPU (highly recommended for performance).
+
+2. ENVIRONMENT SETUP
+----------------------------------
+Open a terminal (e.g. Anaconda Prompt or PowerShell) in the project directory:
+
+  # Create a conda environment
+  conda create --name apgcc python=3.8 -y
+  conda activate apgcc
+
+  # Install project dependencies
+  pip install -r requirements.txt
+
+3. GET PRETRAINED WEIGHTS
+----------------------------------
+Pretrained SHHA weights must be placed in `./apgcc/output/`.
+You can download them using curl or wget:
+
+  # Create output folder if it doesn't exist
+  mkdir -p apgcc/output
+
+  # Download weights
+  curl -L "https://docs.google.com/uc?export=download&id=1pEvn5RrvmDqVJUDZ4c9-rCJcl2I7bRhu" -o ./apgcc/output/SHHA_best.pth
+
+4. RUNNING CROWD COUNTING SCRIPTS
+----------------------------------
+
+A. Unified Video & Specific Frame Analysis (Recommended)
+---------------------------------------------------------
+This tool performs temporal persistent point tracking, generates crowd counting plots,
+compiles text reports, and optionally extracts arbitrary frames for density analysis.
+
+  # Option 1: Run full video analysis and extract specific frames (e.g. frame 50, 150, 250, 350)
+  python apgcc/analyze_video_and_frames.py --video stock-footage-mumbai-maharashtra-india-mumbai-stampede-mumbai-ganesha-festival.webm --weights apgcc/output/SHHA_best.pth --config apgcc/configs/SHHA_test.yml --output_video mumbai_tracked_output.mp4 --output_dir ./inference_results --frames 50,150,250,350
+
+  # Option 2: Extract and count crowd on specific frames only (skipping the full video process)
+  python apgcc/analyze_video_and_frames.py --video stock-footage-mumbai-maharashtra-india-mumbai-stampede-mumbai-ganesha-festival.webm --weights apgcc/output/SHHA_best.pth --config apgcc/configs/SHHA_test.yml --frames 100,200,300 --skip_video
+
+  # Option 3: Extract frames by timestamp in seconds (e.g. at 2.5s and 10.0s)
+  python apgcc/analyze_video_and_frames.py --video stock-footage-mumbai-maharashtra-india-mumbai-stampede-mumbai-ganesha-festival.webm --weights apgcc/output/SHHA_best.pth --config apgcc/configs/SHHA_test.yml --seconds 2.5,10.0 --skip_video
+
+B. Run Crowd Counting on a Single Image
+----------------------------------------
+To analyze a standalone image and output an annotated image with a HUD dashboard:
+
+  python apgcc/analyze_image.py --image stampede.jpg --weights apgcc/output/SHHA_best.pth --config apgcc/configs/SHHA_test.yml --output ./inference_results/stampede_output.jpg
+
+C. Run Video Analysis (Legacy Tracking Script)
+----------------------------------------
+To run the basic point tracker on video frame-by-frame:
+
+  python apgcc/analyze_video_tracked.py --video stock-footage-mumbai-maharashtra-india-mumbai-stampede-mumbai-ganesha-festival.webm --weights apgcc/output/SHHA_best.pth --config apgcc/configs/SHHA_test.yml --output_video tracked_output.mp4 --output_dir ./inference_results
+
+5. INFERENCE RESULTS OUTPUTS
+----------------------------------
+All results will be saved in the directory specified by `--output_dir` (default is `./inference_results/`):
+- `tracked_analysis_report.txt`: Summary of statistics (min/max/average count) and alert events.
+- `tracked_crowd_count_plot.png`: Line graph of crowd count over time overlaid with safety warning levels.
+- `mumbai_tracked_output.mp4`: Processed video with points annotated in track-based colors and real-time HUD overlays.
+- `frame_[index]_annotated.png`: Annotated screenshots of requested individual frame extracts.

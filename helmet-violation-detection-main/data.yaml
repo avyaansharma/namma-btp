@@ -1,0 +1,15 @@
+train: yolo_dataset/images/train
+val: yolo_dataset/images/train
+
+nc: 9
+
+names:
+  0: motorbike
+  1: DHelmet
+  2: DNoHelmet
+  3: P1Helmet
+  4: P1NoHelmet
+  5: P2Helmet
+  6: P2NoHelmet
+  7: P0Helmet
+  8: P0NoHelmet
