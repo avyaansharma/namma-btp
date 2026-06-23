@@ -100,13 +100,13 @@ python scripts/evaluate_pipeline.py
 
 *Note: You will need to modify the `test_images_dir` variable inside `scripts/evaluate_pipeline.py` to point to your local directory of raw traffic camera images before running.*
 
-# APGCC-aims: Enhanced Point-based Crowd Counting and Localization
+# CrowdCounting: Enhanced Point-based Crowd Counting and Localization
 
 This repository extends the official [APGCC](https://github.com/AaronCIH/APGCC) (Improving Point-based Crowd Counting and Localization Based on Auxiliary Point Guidance - ECCV 2024) implementation by adding robust **video inference**, **frame extraction**, and **HUD dashboard visualization** capabilities for real-world crowd analysis.
 
 [Project Page](https://apgcc.github.io/) | [Paper](https://arxiv.org/abs/2405.10589) | [Original Code](https://github.com/AaronCIH/APGCC)
 
-## ✨ Custom Features in APGCC-aims
+## ✨ Custom Features in CrowdCounting
 - **Temporal Persistent Point Tracking**: Tracks crowd instances across video frames.
 - **HUD Dashboards**: Overlays real-time crowd count, alerts, and safety warning levels.
 - **Automated Reporting**: Generates statistics (min/max/average count) and alert event logs (`tracked_analysis_report.txt`).
@@ -122,8 +122,8 @@ Crowd counting and localization have become increasingly important in computer v
 
 1) Create a conda environment and activate it.
 ```bash
-conda create --name apgcc python=3.8 -y
-conda activate apgcc
+conda create --name CrowdCounting python=3.8 -y
+conda activate CrowdCounting
 ```
 
 2) Install dependencies.
@@ -132,10 +132,10 @@ pip install -r requirements.txt
 ```
 
 3) Download Pretrained Weights.
-Pretrained SHHA weights must be placed in `./apgcc/output/`. You can download them using `curl`:
+Pretrained SHHA weights must be placed in `./CrowdCounting/output/`. You can download them using `curl`:
 ```bash
-mkdir -p apgcc/output
-curl -L "https://docs.google.com/uc?export=download&id=1pEvn5RrvmDqVJUDZ4c9-rCJcl2I7bRhu" -o ./apgcc/output/SHHA_best.pth
+mkdir -p CrowdCounting/output
+curl -L "https://docs.google.com/uc?export=download&id=1pEvn5RrvmDqVJUDZ4c9-rCJcl2I7bRhu" -o ./CrowdCounting/output/SHHA_best.pth
 ```
 
 ## How to Run Inference
@@ -147,10 +147,10 @@ This tool performs temporal persistent point tracking, generates crowd counting 
 
 **Option A: Full video analysis and extract specific frames** (e.g., frames 50, 150, 250, 350)
 ```bash
-python apgcc/analyze_video_and_frames.py \
+python CrowdCounting/analyze_video_and_frames.py \
   --video stock-footage-mumbai-maharashtra-india-mumbai-stampede-mumbai-ganesha-festival.webm \
-  --weights apgcc/output/SHHA_best.pth \
-  --config apgcc/configs/SHHA_test.yml \
+  --weights CrowdCounting/output/SHHA_best.pth \
+  --config CrowdCounting/configs/SHHA_test.yml \
   --output_video mumbai_tracked_output.mp4 \
   --output_dir ./inference_results \
   --frames 50,150,250,350
@@ -158,20 +158,20 @@ python apgcc/analyze_video_and_frames.py \
 
 **Option B: Extract and count crowd on specific frames only** (skipping the full video process)
 ```bash
-python apgcc/analyze_video_and_frames.py \
+python CrowdCounting/analyze_video_and_frames.py \
   --video stock-footage-mumbai-maharashtra-india-mumbai-stampede-mumbai-ganesha-festival.webm \
-  --weights apgcc/output/SHHA_best.pth \
-  --config apgcc/configs/SHHA_test.yml \
+  --weights CrowdCounting/output/SHHA_best.pth \
+  --config CrowdCounting/configs/SHHA_test.yml \
   --frames 100,200,300 \
   --skip_video
 ```
 
 **Option C: Extract frames by timestamp** (in seconds, e.g. at 2.5s and 10.0s)
 ```bash
-python apgcc/analyze_video_and_frames.py \
+python CrowdCounting/analyze_video_and_frames.py \
   --video stock-footage-mumbai-maharashtra-india-mumbai-stampede-mumbai-ganesha-festival.webm \
-  --weights apgcc/output/SHHA_best.pth \
-  --config apgcc/configs/SHHA_test.yml \
+  --weights CrowdCounting/output/SHHA_best.pth \
+  --config CrowdCounting/configs/SHHA_test.yml \
   --seconds 2.5,10.0 \
   --skip_video
 ```
@@ -179,20 +179,20 @@ python apgcc/analyze_video_and_frames.py \
 ### 2. Single Image Inference
 To analyze a standalone image and output an annotated image with a HUD dashboard:
 ```bash
-python apgcc/analyze_image.py \
+python CrowdCounting/analyze_image.py \
   --image stampede.jpg \
-  --weights apgcc/output/SHHA_best.pth \
-  --config apgcc/configs/SHHA_test.yml \
+  --weights CrowdCounting/output/SHHA_best.pth \
+  --config CrowdCounting/configs/SHHA_test.yml \
   --output ./inference_results/stampede_output.jpg
 ```
 
 ### 3. Video Analysis (Legacy Tracking Script)
 To run the basic point tracker on video frame-by-frame without the unified frame extraction capabilities:
 ```bash
-python apgcc/analyze_video_tracked.py \
+python CrowdCounting/analyze_video_tracked.py \
   --video stock-footage-mumbai-maharashtra-india-mumbai-stampede-mumbai-ganesha-festival.webm \
-  --weights apgcc/output/SHHA_best.pth \
-  --config apgcc/configs/SHHA_test.yml \
+  --weights CrowdCounting/output/SHHA_best.pth \
+  --config CrowdCounting/configs/SHHA_test.yml \
   --output_video tracked_output.mp4 \
   --output_dir ./inference_results
 ```
@@ -305,7 +305,7 @@ This will generate outputs for each step (`1_original_input.png`, `2_nafnet_enha
 - `transformers` (for OWL-ViT)
 - `yolov9`
 
-# Helmet Violation Detection
+# Helmet and Triple Riding Detection
 
 This directory contains a pipeline for detecting helmet violations for motorcycle riders using YOLO. 
 
@@ -320,7 +320,7 @@ This directory contains a pipeline for detecting helmet violations for motorcycl
 
 # Accident Detector
 
-`accident_detector.py` is a specialized Python script that detects vehicle collisions and severe impacts from traffic feeds.
+`accident detector/accident_detector.py` is a specialized Python script that detects vehicle collisions and severe impacts from traffic feeds.
 
 ## Features
 - **Tracking & Heuristics**: Computes Intersection over Union (IoU) of vehicle bounding boxes, alongside sudden deceleration to heuristically flag major crashes.
@@ -331,7 +331,7 @@ This directory contains a pipeline for detecting helmet violations for motorcycl
 
 # Traffic Light Violation Detection
 
-The `traffic-light.ipynb` notebook implements an end-to-end system for identifying vehicles running red lights.
+The `traffic light voilation/traffic-light.ipynb` notebook implements an end-to-end system for identifying vehicles running red lights.
 
 ## Features
 - **Object Tracking**: Uses Supervision's `ByteTrack` to track vehicles persistently across frames.
@@ -344,7 +344,7 @@ The `traffic-light.ipynb` notebook implements an end-to-end system for identifyi
 
 # Speed Detector
 
-The `speed_detector.ipynb` notebook demonstrates the fine-tuning of a YOLOv8 network for vehicle speed detection.
+The `speed detector/speed_detector.ipynb` notebook demonstrates the fine-tuning of a YOLOv8 network for vehicle speed detection.
 
 ## Features
 - **Transfer Learning**: Starts from pretrained `yolov8n.pt` weights and freezes the backbone to retain generic feature extraction.
