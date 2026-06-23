@@ -53,12 +53,12 @@ To calculate the honest, system-level deployment metric, the full pipeline (incl
 *Below are purely model predictions (no ground truth) generated dynamically on unseen test data.*
 
 ### Belted Occupants (Compliant)
-![Belted 1](outputs/side_by_side_comparisons/comparison_belted_1.jpg)
-![Belted 4](outputs/side_by_side_comparisons/comparison_belted_4.jpg)
+![Belted 1](seatbelt/outputs/side_by_side_comparisons/comparison_belted_1.jpg)
+![Belted 4](seatbelt/outputs/side_by_side_comparisons/comparison_belted_4.jpg)
 
 ### Unbelted Occupants (Violations)
-![Unbelted 1](outputs/side_by_side_comparisons/comparison_unbelted_1.jpg)
-![Unbelted 2](outputs/side_by_side_comparisons/comparison_unbelted_2.jpg)
+![Unbelted 1](seatbelt/outputs/side_by_side_comparisons/comparison_unbelted_1.jpg)
+![Unbelted 2](seatbelt/outputs/side_by_side_comparisons/comparison_unbelted_2.jpg)
 
 ---
 
@@ -116,7 +116,7 @@ This repository extends the official [APGCC](https://github.com/AaronCIH/APGCC) 
 ## Introduction (From Original Paper)
 Crowd counting and localization have become increasingly important in computer vision. We propose Auxiliary Point Guidance (APG) to provide clear and effective guidance for proposal selection and optimization, addressing the core issue of matching uncertainty. Additionally, we develop Implicit Feature Interpolation (IFI) to enable adaptive feature extraction in diverse crowd scenarios, further enhancing the model's robustness and accuracy.
 
-<img width="1096" alt="image" src='figures/model_Arch.jpg'>
+<img width="1096" alt="image" src='CrowdCounting/figures/model_Arch.jpg'>
 
 ## Setup & Installation
 
