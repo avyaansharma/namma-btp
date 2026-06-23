@@ -344,7 +344,7 @@ The `traffic-light.ipynb` notebook implements an end-to-end system for identifyi
 
 # Custom YOLO Training
 
-The `custom_yolo.ipynb` notebook demonstrates the fine-tuning of a YOLOv8 network for vehicle detection.
+The `speed_detector.ipynb` notebook demonstrates the fine-tuning of a YOLOv8 network for vehicle detection.
 
 ## Features
 - **Transfer Learning**: Starts from pretrained `yolov8n.pt` weights and freezes the backbone to retain generic feature extraction.
