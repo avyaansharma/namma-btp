@@ -52,7 +52,7 @@ To calculate the honest, system-level deployment metric, the full pipeline (incl
 
 ### Belted Occupants (Compliant)
 ![Belted 1](outputs/side_by_side_comparisons/comparison_belted_1.jpg)
-![Belted 3](outputs/side_by_side_comparisons/comparison_belted_3.jpg)
+![Belted 4](outputs/side_by_side_comparisons/comparison_belted_4.jpg)
 
 ### Unbelted Occupants (Violations)
 ![Unbelted 1](outputs/side_by_side_comparisons/comparison_unbelted_1.jpg)
