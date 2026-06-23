@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 4
+names: ['person-noseatbelt', 'person-seatbelt', 'seatbelt', 'windshield']
+
+roboflow:
+  workspace: arpits-workspace-jrny0
+  project: seatbelt-detection-esut6-raks8
+  version: dataset
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/arpits-workspace-jrny0/seatbelt-detection-esut6-raks8/dataset/dataset
