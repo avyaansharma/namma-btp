@@ -1,0 +1,32 @@
+
+======================================================================
+                  YOLOv8 SEATBELT PIPELINE METRICS                  
+======================================================================
+
+[INFO] Validating on Test Dataset (N=1,420 images)...
+
+--- Stage 3: Windshield Localization ---
+Class                | Precision  | Recall     | F1-Score   | mAP@50    
+------------------------------------------------------------------------
+windshield           | 0.985      | 0.986      | 0.985      | 0.993     
+
+--- Stage 4: Occupancy Classification ---
+Class                | Precision  | Recall     | F1-Score   | mAP@50    
+------------------------------------------------------------------------
+with_occupant        | 0.987      | 0.997      | 0.992      | -         
+without_occupant     | 0.984      | 0.924      | 0.953      | -         
+
+--- Stage 5: Seatbelt Compliance Detection ---
+Class                | Precision  | Recall     | F1-Score   | mAP@50    
+------------------------------------------------------------------------
+person-seatbelt      | 0.989      | 0.985      | 0.987      | 0.987     
+person-noseatbelt    | 0.978      | 0.982      | 0.980      | 0.981     
+all classes (mean)   | 0.983      | 0.983      | 0.983      | 0.984     
+
+======================================================================
+                END-TO-END CASCADED PERFORMANCE                
+======================================================================
+>> End-to-End Precision    : 95.53%
+>> End-to-End Accuracy     : 86.99%
+>> Test Set mAP@50         : 0.984
+======================================================================

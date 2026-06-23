@@ -52,7 +52,7 @@ if __name__ == '__main__':
             continue
             
         img = cv2.imread(img_path)
-        if img is None: continue
+        if img is None: continue    
         
         h_orig, w_orig = img.shape[:2]
         
