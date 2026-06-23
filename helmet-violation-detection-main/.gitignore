@@ -1,0 +1,11 @@
+videos/
+frames/
+yolo_dataset/images/
+yolo_dataset/labels/
+runs/
+gt.txt
+gt_cleaned.txt
+labels.txt
+__pycache__/
+*.pyc
+*.spydata
